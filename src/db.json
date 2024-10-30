@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "12e9",
+      "title": "Nordic Chair",
+      "price": "50.00",
+      "imgPath": "images/product-3.png"
+    },
+    {
+      "id": "dbd3",
+      "title": "Nordic Chair",
+      "price": "50.00",
+      "imgPath": "images/product-1.png"
+    },
+    {
+      "id": "82f1",
+      "title": "Kruzo Aero Chair",
+      "price": "78.00",
+      "imgPath": "images/product-2.png"
+    },
+    {
+      "id": "febb",
+      "title": "Ergonomic Chair",
+      "price": "43.00",
+      "imgPath": "images/product-3.png"
+    }
+  ]
+}
