@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const cart = useSelector((state) => state.cart);
   const location = useLocation();
 
   function isAction(path) {
@@ -34,34 +36,34 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarsFurni">
             <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
               <li className={`nav-item ${isAction("/") && "active"}`}>
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className={`nav-item ${isAction("/shop") && "active"}`}>
-                <a className="nav-link" href="/shop">
+                <Link className="nav-link" to="/shop">
                   Shop
-                </a>
+                </Link>
               </li>
               <li className={`nav-item ${isAction("/about") && "active"}`}>
-                <a className="nav-link" href="/about">
+                <Link className="nav-link" to="/about">
                   About us
-                </a>
+                </Link>
               </li>
               <li className={`nav-item ${isAction("/services") && "active"}`}>
-                <a className="nav-link" href="/services">
+                <Link className="nav-link" to="/services">
                   Services
-                </a>
+                </Link>
               </li>
               <li className={`nav-item ${isAction("/blog") && "active"}`}>
-                <a className="nav-link" href="/blog">
+                <Link className="nav-link" to="/blog">
                   Blog
-                </a>
+                </Link>
               </li>
               <li className={`nav-item ${isAction("/contact") && "active"}`}>
-                <a className="nav-link" href="/contact">
+                <Link className="nav-link" to="/contact">
                   Contact us
-                </a>
+                </Link>
               </li>
             </ul>
 
@@ -72,9 +74,14 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a className="nav-link" href="cart.html">
+                <Link className="nav-link position-relative" to="/cart">
                   <img src="images/cart.svg" />
-                </a>
+                  {cart.items.length !== 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                      {cart.items.length}
+                    </span>
+                  )}
+                </Link>
               </li>
             </ul>
           </div>

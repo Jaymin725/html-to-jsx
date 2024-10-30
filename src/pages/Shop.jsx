@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { useLoaderData } from "react-router-dom";
+import { addItem } from "../features/cart/cartSlice";
 
 export async function loader() {
   const response = await fetch("http://localhost:3000/products");
@@ -8,6 +10,7 @@ export async function loader() {
 
 export default function ShopPage() {
   const { products } = useLoaderData();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -29,12 +32,18 @@ export default function ShopPage() {
       <div className="untree_co-section product-section before-footer-section">
         <div className="container">
           <div className="row">
-            {products.map(({ id, title, price, imgPath }) => (
-              <div className="col-12 col-md-4 col-lg-3 mb-5" key={id}>
-                <a className="product-item" href="#">
-                  <img src={imgPath} className="img-fluid product-thumbnail" />
-                  <h3 className="product-title">{title}</h3>
-                  <strong className="product-price">${price}</strong>
+            {products.map((product) => (
+              <div className="col-12 col-md-4 col-lg-3 mb-5" key={product.id}>
+                <a
+                  className="product-item"
+                  onClick={() => dispatch(addItem(product))}
+                >
+                  <img
+                    src={product.imgPath}
+                    className="img-fluid product-thumbnail"
+                  />
+                  <h3 className="product-title">{product.title}</h3>
+                  <strong className="product-price">${product.price}</strong>
 
                   <span className="icon-cross">
                     <img src="images/cross.svg" className="img-fluid" />
